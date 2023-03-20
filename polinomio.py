@@ -117,7 +117,7 @@ class Polinomio(object):
             actual = actual.sig
         return pol3
     
-    def dividir_polinomios(pol1, pol2): k
+    def dividir_polinomios(pol1, pol2): 
         """Divide dos polinomios"""
         pol3 = Polinomio()
         pol4 = Polinomio()
@@ -146,7 +146,7 @@ class Polinomio(object):
 p1=Polinomio()
 p1.agregar_termino(2,-4)  #-4x^2
 p1.agregar_termino(3,2)   #2x^3
-
+jksdj
 
 p2=Polinomio()
 p2.agregar_termino(3,4)   #4x^3
