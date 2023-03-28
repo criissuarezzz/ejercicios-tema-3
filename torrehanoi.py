@@ -1,44 +1,38 @@
 #ejercicio 1 torre de hanoi con 74 discos y 3 pilas a b y c para ir apilando y desapilando los discos 
 class nodoPila:
-    def __init__(self, dato): #constructor de la clase nodoPila
-        self.dato = dato  #dato que se va a almacenar en la pila
-        self.siguiente = None   #apuntador al siguiente nodo
+    info, sig = None, None #apuntador al siguiente nodo
 
-class pila:    #clase pila
+class Pila:    #clase pila
     def __init__(self): #constructor de la clase pila
         self.cima = None    #apuntador a la cima de la pila
         self.tam = 0    #tamaño de la pila
 
-    def vacia(self):    #metodo para saber si la pila esta vacia
-        if self.cima == None:   #si la cima de la pila es nula
+    def vacia(Pila):    #metodo para saber si la pila esta vacia
+        if Pila.cima == None:   #si la cima de la pila es nula
             return True     #la pila esta vacia
         else:   #si no
             return False    #la pila no esta vacia
         
-    def apilar(self, dato):  #metodo para meter un dato en la pila
-        if self.vacia():    #si la pila esta vacia
-            self.cima = nodoPila(dato)  #la cima de la pila apunta al nuevo nodo
-        else:   #si no
-            aux = nodoPila(dato)    #creamos un nuevo nodo
-            aux.siguiente = self.cima   #el nuevo nodo apunta a la cima de la pila
-            self.cima = aux     #la cima de la pila apunta al nuevo nodo
-        self.tam += 1   #aumentamos el tamaño de la pila
+    def apilar(Pila, dato):  #metodo para meter un dato en la pila
+        nodo= nodoPila()    #creamos un nodo
+        nodo.info = dato    #le asignamos el dato
+        nodo.sig = Pila.cima    #el siguiente nodo apunta a la cima de la pila
+        Pila.tam+=1     #aumentamos el tamaño de la pila
 
-    def desapilar(self):    #metodo para sacar un dato de la pila
-        if self.vacia():    #si la pila esta vacia
-            return None     #no se puede sacar nada
-        else:   #si no
-            aux = self.cima     #creamos un auxiliar que apunte a la cima de la pila
-            self.cima = self.cima.siguiente  #la cima de la pila apunta al siguiente nodo
-            self.tam -= 1   #disminuimos el tamaño de la pila
-            return aux.dato     #retornamos el dato del nodo que se saco de la pila
+
+    def desapilar(Pila):    #metodo para sacar un dato de la pila
+        x=Pila.cima.info    #creamos una variable que guarde el dato que esta en la cima de la pila
+        Pila.cima=Pila.cima.sig    #la cima de la pila apunta al siguiente nodo
+        Pila.tam-=1     #disminuimos el tamaño de la pila
+        return x    #retornamos el dato que estaba en la cima de la pila
         
-    def cimaPila(self): #metodo para saber cual es el dato que esta en la cima de la pila
-        if self.vacia():    #si la pila esta vacia
-            return None     #no hay cima
-        else:   #si no
-            return self.cima.dato   #retornamos el dato que esta en la cima de la pila
-        
+    def pilaVacia(Pila):
+        return Pila.cima is None
+
+    def cimaPila(Pila): #metodo para saber cual es el dato que esta en la cima de la pila
+        if Pila.cima is not None:  #retornamos el dato que esta en la cima de la pila
+            return Pila.cima.info
+
     def tamPila(self):  #metodo para saber el tamaño de la pila
         return self.tam     #retornamos el tamaño de la pila
     
@@ -59,9 +53,9 @@ def hanoi(n, origen, destino, auxiliar): #funcion para resolver el problema de l
     print("se han realizado ", i, " movimientos")
 
 def main(): #funcion principal
-    origen = pila() #creamos la pila origen
-    destino = pila()    #creamos la pila destino
-    auxiliar = pila()   #creamos la pila auxiliar
+    origen = Pila() #creamos la pila origen
+    destino = Pila()    #creamos la pila destino
+    auxiliar = Pila()   #creamos la pila auxiliar
     for i in range(74, 0, -1):  #recorremos los numeros del 74 al 1
         origen.apilar(i)    #apilamos los numeros en la pila origen
     hanoi(74, origen, destino, auxiliar)    #llamamos a la funcion hanoi con 74 discos, la pila origen, la pila destino y la pila auxiliar
