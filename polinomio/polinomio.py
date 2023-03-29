@@ -1,3 +1,6 @@
+import unittest
+
+
 class Nodo(object):
     """Clase nodo simmplemente enlazado"""
 
@@ -142,35 +145,96 @@ class Polinomio(object):
             actual = actual.sig
         return actual is not None
     
-#ejemplos
-p1=Polinomio()
-p1.agregar_termino(2,-4)  #-4x^2
-p1.agregar_termino(3,2)   #2x^3
 
 
-p2=Polinomio()
-p2.agregar_termino(3,4)   #4x^3
-p2.agregar_termino(6,1)   #x^6
 
-print(p1.mostrar_polinomio()) # Muestra el polinomio p1
-print(p2.mostrar_polinomio()) # Muestra el polinomio p2
-print(p1.evaluar_polinomio(4)) # Evalua el polinomio en x=4
-print(p2.evaluar_polinomio(4))  # Evalua el polinomio en x=4
+#pruebas con unittest
+class TestPolinomio(unittest.TestCase):
+    def test_agregar_termino(self):
+        p1=Polinomio()
+        p1.agregar_termino(2,-4)
+        p1.agregar_termino(3,2)
+        self.assertEqual(p1.mostrar_polinomio(), "+2x^3-4x^2")
+    
+    def test_modificar_termino(self):
+        p1=Polinomio()
+        p1.agregar_termino(2,-4)
+        p1.agregar_termino(3,2)
+        p1.modificar_termino(2,2)
+        self.assertEqual(p1.mostrar_polinomio(), "+2x^3+2x^2")
+    
+    def test_eliminar_termino(self):
+        p1=Polinomio()
+        p1.agregar_termino(2,-4)
+        p1.agregar_termino(3,2)
+        p1.eliminar_termino(3)
+        self.assertEqual(p1.mostrar_polinomio(), "-4x^2")
+    
+    def test_mostrar_polinomio(self):
+        p1=Polinomio()
+        p1.agregar_termino(2,-4)
+        p1.agregar_termino(3,2)
+        self.assertEqual(p1.mostrar_polinomio(), "+2x^3-4x^2")
+    
+    def test_evaluar_polinomio(self):
+        p1=Polinomio()
+        p1.agregar_termino(2,-4)
+        p1.agregar_termino(3,2)
+        self.assertEqual(p1.evaluar_polinomio(4), 64)
+    
+    def test_sumar_polinomios(self):
+        p1=Polinomio()
+        p1.agregar_termino(2,-4)
+        p1.agregar_termino(3,2)
+        p2=Polinomio()
+        p2.agregar_termino(3,4)
+        p2.agregar_termino(6,1)
+        p3=p1.sumar_polinomios(p2)
+        self.assertEqual(p3.mostrar_polinomio(), "+22x^3-4x^2")
+    
+    def test_restar_polinomios(self):
+        p1=Polinomio()
+        p1.agregar_termino(2,-4)
+        p1.agregar_termino(3,2)
+        p2=Polinomio()
+        p2.agregar_termino(3,4)
+        p2.agregar_termino(6,1)
+        p3=p1.restar_polinomios(p2)
+        self.assertEqual(p3.mostrar_polinomio(), "-14x^3-4x^2")
 
-p3=p1.sumar_polinomios(p2) # Suma los polinomios p1 y p2
-p3.mostrar_polinomio() # Muestra el polinomio p3
 
-p4=p1.restar_polinomios(p2) # Resta los polinomios p1 y p2
-p4.mostrar_polinomio() # Muestra el polinomio p4
+if __name__ == '__main__':
+    unittest.main()
+    #ejemplos
+    p1=Polinomio()
+    p1.agregar_termino(2,-4)  #-4x^2
+    p1.agregar_termino(3,2)   #2x^3
 
-p5=p1.multiplicar_polinomios(p2) # Multiplica los polinomios p1 y p2
-p5.mostrar_polinomio() # Muestra el polinomio p5
 
-p6,p7=p1.dividir_polinomios(p2) # Divide los polinomios p1 y p2
-p6.mostrar_polinomio() # Muestra el polinomio p6    
-p7.mostrar_polinomio() # Muestra el polinomio p7
+    p2=Polinomio()
+    p2.agregar_termino(3,4)   #4x^3
+    p2.agregar_termino(6,1)   #x^6
 
-p1.eliminar_termino(4) # Elimina el término 2x^4
-print(p1.mostrar_polinomio()) # Muestra el polinomio en forma legible
+    print(p1.mostrar_polinomio()) # Muestra el polinomio p1
+    print(p2.mostrar_polinomio()) # Muestra el polinomio p2
+    print(p1.evaluar_polinomio(4)) # Evalua el polinomio en x=4
+    print(p2.evaluar_polinomio(4))  # Evalua el polinomio en x=4
 
-print(p2.existe_termino(4)) # Devuelve True si existe el término 2x^4
+    p3=p1.sumar_polinomios(p2) # Suma los polinomios p1 y p2
+    p3.mostrar_polinomio() # Muestra el polinomio p3
+
+    p4=p1.restar_polinomios(p2) # Resta los polinomios p1 y p2
+    p4.mostrar_polinomio() # Muestra el polinomio p4
+
+    p5=p1.multiplicar_polinomios(p2) # Multiplica los polinomios p1 y p2
+    p5.mostrar_polinomio() # Muestra el polinomio p5
+
+    p6,p7=p1.dividir_polinomios(p2) # Divide los polinomios p1 y p2
+    p6.mostrar_polinomio() # Muestra el polinomio p6    
+    p7.mostrar_polinomio() # Muestra el polinomio p7
+
+    p1.eliminar_termino(4) # Elimina el término 2x^4
+    print(p1.mostrar_polinomio()) # Muestra el polinomio en forma legible
+
+    print(p2.existe_termino(4)) # Devuelve True si existe el término 2x^4
+
