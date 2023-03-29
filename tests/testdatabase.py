@@ -1,4 +1,4 @@
-import polinomio
+import polinomio.polinomio as polinomio
 import unittest
 import sarrus
 import torrehanoi
