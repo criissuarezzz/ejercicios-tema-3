@@ -53,6 +53,10 @@ if __name__ == "__main__":
     # Apilando discos en la torre de origen
     for i in range(6, 0, -1):
         print("Se ha movido el disco", i)
+        print("Se ha movido el disco", i)
+        print(f'Origen: {origen.obtener_altura()}')
+        print(f'Destino: {destino.obtener_altura()}')
+        print(f'Auxiliar: {auxiliar.obtener_altura()}')
         disco = Disco(i)
         origen.apilar(disco)
 
