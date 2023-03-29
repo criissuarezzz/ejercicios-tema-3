@@ -1,6 +1,6 @@
 import polinomio.polinomio as polinomio
 import unittest
-import sarrus
+import sarrus.sarrus as sarrus
 import torrehanoi
 
 class testdatabase(unittest.TestCase):
