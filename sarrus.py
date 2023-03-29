@@ -165,3 +165,47 @@ def recursivaSarrus5x5():
     print('\033[35m'+ "===================" + '\033[0m')
 
 recursivaSarrus5x5()
+
+
+n=int(input("ingrese el tamaño de la matriz: "))
+def recursivaSarrusnxn():
+    matriz = [[0 for x in range(n)] for y in range(n)]
+    for i in range(n):
+        for j in range(n):
+            matriz[i][j]=int(input("ingrese el numero de la posicion ["+str(i)+"]["+str(j)+"]: "))
+    print("la matriz es: ")
+    for i in range(n):
+        for j in range(n):
+            print(matriz[i][j], end=" ")
+        print()
+
+    print('\033[36m'+"¿desea cambiar algún numero de la matriz? (si/no)"+'\033[0m')
+    respuesta = input("->")
+    if respuesta == "si":
+        print("ingrese la posicion del numero que desea cambiar")
+        print("fila: ")
+        fila = int(input("->"))
+        print("columna: ")
+        columna = int(input("->"))
+        print("ingrese el nuevo numero: ")
+        numero = int(input("->"))
+        matriz[fila][columna] = numero
+        print("la matriz es: ")
+        for i in range(n):
+            for j in range(n):
+                print(matriz[i][j], end=" ")
+            print()
+    else:
+        print("la matriz se queda igual")
+    def determinante(matriz):
+        if len(matriz) == 1:
+            return matriz[0][0]
+        else:
+            det = 0
+            for i in range(len(matriz)):
+                det += (-1)**i * matriz[0][i] * determinante([fila[:i] + fila[i+1:] for fila in (matriz[1:])])
+            return det
+    print("el determinante de la matriz es: ", determinante(matriz))
+    print('\033[35m'+ "===================" + '\033[0m')
+
+recursivaSarrusnxn()
