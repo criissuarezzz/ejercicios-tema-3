@@ -60,4 +60,4 @@ m[2] = [7, 8, 9]
 
 # Calcular el determinante
 det = m.determinant()
-print(det)  # Output: 0
+print(det)  

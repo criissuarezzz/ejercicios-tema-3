@@ -1,4 +1,5 @@
 #ejercicio2
+import unittest
 
 #de manera iterativa:
 def iterativaSarrus():
@@ -167,6 +168,8 @@ def recursivaSarrus5x5():
 recursivaSarrus5x5()
 
 
+
+#nxn
 n=int(input("ingrese el tamaño de la matriz: "))
 def recursivaSarrusnxn():
     matriz = [[0 for x in range(n)] for y in range(n)]
@@ -209,3 +212,4 @@ def recursivaSarrusnxn():
     print('\033[35m'+ "===================" + '\033[0m')
 
 recursivaSarrusnxn()
+
